@@ -19,4 +19,7 @@ struct lexical_node {
     }
 };
 
+int parseArgument(const char *arg);
+lexical_node *analyzeSource(const char *source);
+
 #endif
