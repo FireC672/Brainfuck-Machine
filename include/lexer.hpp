@@ -6,15 +6,16 @@
 
 /// @brief Contains the data of the lexical data.
 struct lexical_node {
-    // 
-    std::vector<std::string> lexical_strs;
-
-    lexical_node(const std::vector<std::string>& lexstr){
-        lexical_strs = lexstr;
+    // Initialize the vector of the strings.
+    std::vector<std::string> lexicalNodes;
+    // The constructor should be explicit.
+    explicit lexical_node(const std::vector<std::string>& _lexicalNodes){
+        // Set it.
+        lexicalNodes = _lexicalNodes;
     }
-
-    ~lexical_node(){
-        lexical_strs.clear();
+    // Even the deconstructor.
+    explicit ~lexical_node(){
+        lexicalNodes.clear();
     }
 };
 
