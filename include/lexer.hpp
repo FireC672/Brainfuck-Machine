@@ -13,8 +13,8 @@ struct lexical_node {
         // Set it.
         lexicalNodes = _lexicalNodes;
     }
-    // Even the deconstructor.
-    explicit ~lexical_node(){
+    
+    ~lexical_node(){
         lexicalNodes.clear();
     }
 };
