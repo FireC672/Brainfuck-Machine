@@ -11,16 +11,17 @@ int parseArgument(const char *arg){
     
     while( *arg && *arg != '$' )
           arg++,j--;
+    j--;
     arg++; 
 
     while( *arg && *arg != '\n' ){
         if(!isalnum(*arg))break; 
 
         if(isdigit(*arg)){
-            total += (*arg-'0') * static_cast<int>(pow(10,j));
+            total += (*arg-'0') * static_cast<int>(pow(16,j));
             j--;
         }else{
-            total += (*arg - (isupper(*arg)?'A':'a')+10) * static_cast<int>(pow(10,j));
+            total += (*arg - (isupper(*arg)?'A':'a')+10) * static_cast<int>(pow(16,j));
             j--;
         }
 

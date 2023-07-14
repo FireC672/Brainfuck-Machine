@@ -2,6 +2,6 @@
 #include "include/lexer.hpp"
 
 int main(){
-    std::cout << parseArgument("   $0f");
+    std::cout << parseArgument("   $ff");
     return 0;
 }
