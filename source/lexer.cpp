@@ -52,7 +52,7 @@ int parseArgument(const char *arg){
 /// @return The abstract syntax tree with abstract opcodes and operands.
 lexical_tree *analyzeSource(const char *source){
     // Initialize the vector containing the elements of the abstract tree nodes.
-    std::vector<std::pair<std::string, std::string>> analyzed; 
+    std::vector< std::pair<std::string, std::string> > analyzed; 
     // While we don't reach the end of the 'source', then we procedure with...
     while( *source ){
         // Storing the abstract opcode in this string 'stAbstractArg',
@@ -67,11 +67,13 @@ lexical_tree *analyzeSource(const char *source){
             stAbstractOpcode.push_back(*source);
             source++;
         }
+        source++;
         // Then, while we don't reach a line feed or a null terminator.
         while( *source != '\n' && *source ){
             if( !(*source) || *source == '\n')break; 
             // then treat everything after as an abstract argument.
             stAbstractArg.push_back(*source);
+            source++;
         }
         // Then, push the pair.
         analyzed.push_back(std::make_pair(stAbstractOpcode, stAbstractArg));

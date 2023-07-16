@@ -7,9 +7,9 @@
 /// @brief Contains the data of the lexical data.
 struct lexical_tree {
     // Initialize the vector of the strings.
-    std::vector<std::pair<std::string, std::string>> abstractNodes;
-    // The constructor should be explicit.
-    explicit lexical_tree(const std::vector<std::pair<std::string, std::string>>& _lexicalNodes){
+    std::vector< std::pair<std::string, std::string> > abstractNodes;
+    // The constructor should be explicit. or not.
+    lexical_tree(const std::vector< std::pair<std::string, std::string> >& _lexicalNodes){
         // Set it.
         abstractNodes = _lexicalNodes;
     }
