@@ -43,3 +43,33 @@ lexical_tree *concretiztaion(lexical_tree *rawTree){
     lexical_tree *concretTree = new lexical_tree(concretizedTree);
     return concretTree;
 }
+
+std::string alterBrainfuck(lexical_tree *concretTree){
+    std::string brainfuckOut = "";
+
+    for(auto& concretNode : concretTree->abstractNodes){
+        std::string& a(concretNode.first);
+        std::string& b(concretNode.second);
+        int nConcretB = parseArgument(b.c_str());
+        
+        char token = '>';
+        // Logical instructions don't need an argument.
+        bool isLogical = false;
+        if(a.compare("rsh"))token = '>';
+        if(a.compare("lsh"))token = '<';
+        if(a.compare("sup"))token = '+';
+        if(a.compare("sub"))token = '-';
+        if(a.compare("psh"))token = '[', isLogical = true;
+        if(a.compare("pop"))token = ']', isLogical = false;
+        if(a.compare("out"))token = '.';
+        // rcv = receive.
+        if(a.compare("rcv"))token = ',';
+
+        if(!isLogical){
+           for(int i = 0; i < nConcretB; i++)brainfuckOut.push_back(token);
+        }else {
+            brainfuckOut.push_back(token);
+        }
+    }
+    return brainfuckOut;
+}
