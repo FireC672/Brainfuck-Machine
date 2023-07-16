@@ -62,7 +62,7 @@ lexical_tree *analyzeSource(const char *source){
         // While we don't reach a blank space. then treat anything that comes after as opcode.
         while ( *source != ' ' && *source ){
             // If we reach a null terminator, then break.
-            if( *source == '\0' || *source == ' ' )break;
+            if( *source == '\0' || *source == ' ' || *source == '\n' )break;
             // Push every character in this loop as a abstract opcode's element.
             stAbstractOpcode.push_back(*source);
             source++;
