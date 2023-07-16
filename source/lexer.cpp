@@ -47,25 +47,37 @@ int parseArgument(const char *arg){
     return total;
 }
 
+/// @brief This function examines the 'source' and parses everything into a tree's node.
+/// @param source The source to examine and analyze.
+/// @return The abstract syntax tree with abstract opcodes and operands.
 lexical_tree *analyzeSource(const char *source){
+    // Initialize the vector containing the elements of the abstract tree nodes.
     std::vector<std::pair<std::string, std::string>> analyzed; 
+    // While we don't reach the end of the 'source', then we procedure with...
     while( *source ){
+        // Storing the abstract opcode in this string 'stAbstractArg',
+        // and storing the abstract string argument in the string 'stAbstractArg'.
         std::string stAbstractOpcode;
         std::string stAbstractArg;
-        while ( *source != ' ' ){
-              if( *source == '\0' || *source == ' ' )break; 
-              stAbstractOpcode.push_back(*source);
-              source++;
+        // While we don't reach a blank space. then treat anything that comes after as opcode.
+        while ( *source != ' ' && *source ){
+            // If we reach a null terminator, then break.
+            if( *source == '\0' || *source == ' ' )break;
+            // Push every character in this loop as a abstract opcode's element.
+            stAbstractOpcode.push_back(*source);
+            source++;
         }
-
-        while( *source != '\n' ){
+        // Then, while we don't reach a line feed or a null terminator.
+        while( *source != '\n' && *source ){
             if( !(*source) || *source == '\n')break; 
+            // then treat everything after as an abstract argument.
             stAbstractArg.push_back(*source);
         }
+        // Then, push the pair.
         analyzed.push_back(std::make_pair(stAbstractOpcode, stAbstractArg));
         source++;
     }
-
+    // Parse it as an abstract syntax tree.
     lexical_tree *abstractTree = new lexical_tree(analyzed);
     return abstractTree;
 }
