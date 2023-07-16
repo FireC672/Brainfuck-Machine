@@ -67,7 +67,10 @@ lexical_tree *analyzeSource(const char *source){
             stAbstractOpcode.push_back(*source);
             source++;
         }
-        source++;
+
+        // Avoid the empty spaces.
+        while( *source && *source == ' ')source++;
+
         // Then, while we don't reach a line feed or a null terminator.
         while( *source != '\n' && *source ){
             if( !(*source) || *source == '\n')break; 
