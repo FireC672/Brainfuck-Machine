@@ -27,19 +27,17 @@ lexical_tree *concretiztaion(lexical_tree *rawTree){
            concretizedTree.push_back(std::make_pair("psh", "$00"));
            concretizedTree.push_back(std::make_pair("sub", b));
            concretizedTree.push_back(std::make_pair("pop", "$00"));
-           continue;
-        }
-
-        // Abstract instruction #2 (Clear +)
-        if(a.compare("cla")){
+           
+        }else if(a.compare("cla")){
+           // Abstract instruction #2 (Clear +)
            concretizedTree.push_back(std::make_pair("psh", "$00"));
            concretizedTree.push_back(std::make_pair("add", b));
            concretizedTree.push_back(std::make_pair("pop", "$00"));
-           continue;
+        }else{
+           // If we don't meet a abstract instruction, then our assumption is false.
+           // meaning this node is a concret node, and can be planted into the tree without any changes.
+           concretizedTree.push_back(std::make_pair(a,b));        
         }
-        // If we don't meet a abstract instruction, then our assumption is false.
-        // meaning this node is a concret node, and can be planted into the tree without any changes.
-        concretizedTree.push_back(std::make_pair(a,b));
     }
     // The concret and free from abstract tree.
     lexical_tree *concretTree = new lexical_tree(concretizedTree);
