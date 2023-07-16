@@ -1,6 +1,7 @@
 #include "../include/parser.hpp"
 #include "../include/lexer.hpp"
 #include <vector>
+#include <iostream>
 #include <string>
 
 /// @brief This function reconstructs the lexical tree as a non-abstract syntax tree.
@@ -44,24 +45,28 @@ lexical_tree *concretiztaion(lexical_tree *rawTree){
     return concretTree;
 }
 
+/// @brief Transforms the AST/CST (Concret Syntax Tree) to brainfuck alternative code.
+/// @param concretTree The concretized tree.
+/// @return The final output in brainfuck.
 std::string alterBrainfuck(lexical_tree *concretTree){
     std::string brainfuckOut = "";
 
     for(auto& concretNode : concretTree->abstractNodes){
         std::string& a(concretNode.first);
         std::string& b(concretNode.second);
+        std::cout << a;
         int nConcretB = parseArgument(b.c_str());
         
-        char token = '>';
+        char token = '';
         // Logical instructions don't need an argument.
         bool isLogical = false;
-        if(a.compare("rsh"))token = '>';
-        if(a.compare("lsh"))token = '<';
-        if(a.compare("sup"))token = '+';
-        if(a.compare("sub"))token = '-';
+        if(a.compare("rsh"))token = '>', isLogical = false;
+        if(a.compare("lsh"))token = '<', isLogical = false;
+        if(a.compare("sup"))token = '+', isLogical = false;
+        if(a.compare("sub"))token = '-', isLogical = false;
         if(a.compare("psh"))token = '[', isLogical = true;
-        if(a.compare("pop"))token = ']', isLogical = false;
-        if(a.compare("out"))token = '.';
+        if(a.compare("pop"))token = ']', isLogical = true;
+        if(a.compare("out"))token = '.', isLogical = false;
         // rcv = receive.
         if(a.compare("rcv"))token = ',';
 
