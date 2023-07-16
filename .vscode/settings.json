@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.py": "python",
+        "*.asm": "yaml",
+        "utility": "cpp"
+    }
+}

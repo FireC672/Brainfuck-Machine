@@ -54,7 +54,6 @@ std::string alterBrainfuck(lexical_tree *concretTree){
     for(auto& concretNode : concretTree->abstractNodes){
         std::string a(concretNode.first);
         std::string b(concretNode.second);
-        std::cout << a;
         int nConcretB = parseArgument(b.c_str());
         
         char token = 0;
