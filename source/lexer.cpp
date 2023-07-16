@@ -1,5 +1,4 @@
 #include "../include/lexer.hpp"
-
 #include <vector>
 #include <string>
 #include <cctype>
@@ -48,9 +47,25 @@ int parseArgument(const char *arg){
     return total;
 }
 
-lexical_node *analyzeSource(const char *source){
-    std::vector<std::string> analyzed; 
+lexical_tree *analyzeSource(const char *source){
+    std::vector<std::pair<std::string, std::string>> analyzed; 
     while( *source ){
+        std::string stAbstractOpcode;
+        std::string stAbstractArg;
+        while ( *source != ' ' ){
+              if( *source == '\0' || *source == ' ' )break; 
+              stAbstractOpcode.push_back(*source);
+              source++;
+        }
+
+        while( *source != '\n' ){
+            if( !(*source) || *source == '\n')break; 
+            stAbstractArg.push_back(*source);
+        }
+        analyzed.push_back(std::make_pair(stAbstractOpcode, stAbstractArg));
         source++;
     }
+
+    lexical_tree *abstractTree = new lexical_tree(analyzed);
+    return abstractTree;
 }

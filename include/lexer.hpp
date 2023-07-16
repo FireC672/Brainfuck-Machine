@@ -5,21 +5,21 @@
 #include <vector>
 
 /// @brief Contains the data of the lexical data.
-struct lexical_node {
+struct lexical_tree {
     // Initialize the vector of the strings.
-    std::vector<std::string> lexicalNodes;
+    std::vector<std::pair<std::string, std::string>> abstractNodes;
     // The constructor should be explicit.
-    explicit lexical_node(const std::vector<std::string>& _lexicalNodes){
+    explicit lexical_tree(const std::vector<std::pair<std::string, std::string>>& _lexicalNodes){
         // Set it.
-        lexicalNodes = _lexicalNodes;
+        abstractNodes = _lexicalNodes;
     }
     
-    ~lexical_node(){
-        lexicalNodes.clear();
+    ~lexical_tree(){
+        abstractNodes.clear();
     }
 };
 
 int parseArgument(const char *arg);
-lexical_node *analyzeSource(const char *source);
+lexical_tree *analyzeSource(const char *source);
 
 #endif
