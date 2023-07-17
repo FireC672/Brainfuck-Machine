@@ -15,9 +15,14 @@ int parseArgument(const char *arg){
     // The total is kept in memory in this variable.
     int total = 0; 
     // Go to the nearest '$' dollar to find the argument symbol.
+    int travelledThrough = 0;
     while( *arg && *arg != '$' )
           // While going to each character, deincrementing 'j'.
-          arg++,j--;
+          arg++,j--, travelledThrough++;
+
+    if(travelledThrough == strlen(arg))return -1;
+    
+
     // Skip the dollar sign, to the nearest digit.
     arg++; 
     // Go through each character in the string, until a line feed of null terminator.
@@ -63,7 +68,7 @@ lexical_tree *analyzeSource(const char *source){
         std::string stAbstractOpcode;
         std::string stAbstractArg;
         // While we don't reach a blank space. then treat anything that comes after as opcode.
-        while ( *source != ' ' && *source ){
+        while ( *source != ' ' && *source && *source != '\n' ){
             // If we reach a null terminator, then break.
             if( *source == '\0' || *source == ' ' || *source == '\n' )break;
             // Push every character in this loop as a abstract opcode's element.
