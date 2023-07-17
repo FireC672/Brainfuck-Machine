@@ -1,6 +1,0 @@
-rsh 
-rcv $00
-psh 
-    rsh 
-    rcv 
-pop 
