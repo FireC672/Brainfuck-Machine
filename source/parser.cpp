@@ -65,7 +65,7 @@ std::string alterBrainfuck(lexical_tree *concretTree){
         std::string b(concretNode.second);
         int nConcretB = parseArgument(b.c_str());
         
-        // If there are no arguments, treat it as a $01.
+        // If there are no arguments, then treat it as a $01.
         if(nConcretB == -1)nConcretB = 1;
         
         char token = 0;
