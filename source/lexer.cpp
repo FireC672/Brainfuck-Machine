@@ -1,8 +1,9 @@
-#include "../include/lexer.hpp"
 #include <vector>
 #include <string>
 #include <cctype>
 #include <cmath>
+
+#include "../include/lexer.hpp"
 
 /// @brief Turns the abstract argument element to a number.
 /// @param arg The argument to parse and analyze.

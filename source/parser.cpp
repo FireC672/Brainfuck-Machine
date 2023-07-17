@@ -1,8 +1,9 @@
-#include "../include/parser.hpp"
-#include "../include/lexer.hpp"
 #include <vector>
 #include <iostream>
 #include <string>
+
+#include "../include/parser.hpp"
+#include "../include/lexer.hpp"
 
 /// @brief This function reconstructs the lexical tree as a non-abstract syntax tree.
 /// @param rawTree The original tree.
