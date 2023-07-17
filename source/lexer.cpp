@@ -7,6 +7,7 @@
 /// @brief Turns the abstract argument element to a number.
 /// @param arg The argument to parse and analyze.
 /// @return The argument into a B16 to B10 number.
+/// @brief From 'lexer.hpp'
 int parseArgument(const char *arg){
     // Calculate the length of 'arg', substracted by one.
     // for B16 to B10 conversion reasons, we will see next.
@@ -50,11 +51,13 @@ int parseArgument(const char *arg){
 /// @brief This function examines the 'source' and parses everything into a tree's node.
 /// @param source The source to examine and analyze.
 /// @return The abstract syntax tree with abstract opcodes and operands.
+/// @brief From 'lexer.hpp'
 lexical_tree *analyzeSource(const char *source){
     // Initialize the vector containing the elements of the abstract tree nodes.
     std::vector< std::pair<std::string, std::string> > analyzed; 
     // While we don't reach the end of the 'source', then we procedure with...
     while( *source ){
+        while( *source == ' ' && *source )source++;
         // Storing the abstract opcode in this string 'stAbstractArg',
         // and storing the abstract string argument in the string 'stAbstractArg'.
         std::string stAbstractOpcode;

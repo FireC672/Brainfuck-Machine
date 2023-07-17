@@ -7,6 +7,7 @@
 /// @brief This function reconstructs the lexical tree as a non-abstract syntax tree.
 /// @param rawTree The original tree.
 /// @return The reconstructed/transmuted tree.
+/// @brief From 'parser.hpp'
 lexical_tree *concretiztaion(lexical_tree *rawTree){
     // Initialize the vector that used to reconstruct the tree.
     std::vector< std::pair<std::string, std::string> > concretizedTree; 
@@ -55,6 +56,7 @@ lexical_tree *concretiztaion(lexical_tree *rawTree){
 /// @brief Transforms the AST/CST (Concret Syntax Tree) to brainfuck alternative code.
 /// @param concretTree The concretized tree.
 /// @return The final output in brainfuck.
+/// @brief From 'parser.hpp'
 std::string alterBrainfuck(lexical_tree *concretTree){
     std::string brainfuckOut = "";
 
