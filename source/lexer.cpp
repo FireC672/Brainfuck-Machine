@@ -62,6 +62,12 @@ lexical_tree *analyzeSource(const char *source){
     std::vector< std::pair<std::string, std::string> > analyzed; 
     // While we don't reach the end of the 'source', then we procedure with...
     while( *source ){
+        
+        // ';' will be treated as comments.
+        if( *source == ';' ){
+            while( *source && *source != '\n' )source++;
+        }
+
         while( *source == ' ' && *source )source++;
         // Storing the abstract opcode in this string 'stAbstractArg',
         // and storing the abstract string argument in the string 'stAbstractArg'.
