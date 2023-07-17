@@ -79,6 +79,8 @@ std::string alterBrainfuck(lexical_tree *concretTree){
         if(!a.compare("out"))token = '.', isLogical = false;
         // rcv = receive.
         if(!a.compare("rcv"))token = ',';
+        // If the argument is '$00', then ignore the command.
+        if(nConcretB == 0 && !isLogical)continue;
 
         if(!isLogical){
            for(int i = 0; i < nConcretB; i++)brainfuckOut.push_back(token);
