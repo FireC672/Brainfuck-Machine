@@ -42,8 +42,9 @@ lexical_tree *concretiztaion(lexical_tree *rawTree){
            concretizedTree.push_back(std::make_pair("sub", "$01"));
            concretizedTree.push_back(std::make_pair("pop", "$00"));
            concretizedTree.push_back(std::make_pair("sup", "$01"));
-        }
-        else{
+        }else if (!a.compare("set")) {
+           // Abstract instruction #4 (Sentence insertion)
+        }else{
            // If we don't meet a abstract instruction, then our assumption is false.
            // meaning this node is a concret node, and can be planted into the tree without any changes.
            concretizedTree.push_back(std::make_pair(a,b));        

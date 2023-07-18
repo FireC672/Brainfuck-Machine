@@ -8,7 +8,7 @@
 /// @brief Turns the abstract argument element to a number.
 /// @param arg The argument to parse and analyze.
 /// @return The argument into a B16 to B10 number.
-/// @brief From 'lexer.hpp'
+/// @brief From 'lexer.hpp'
 int parseArgument(const char *arg){
     // Calculate the length of 'arg', substracted by one.
     // for B16 to B10 conversion reasons, we will see next.
@@ -21,9 +21,8 @@ int parseArgument(const char *arg){
           // While going to each character, deincrementing 'j'.
           arg++,j--, travelledThrough++;
 
+    // If we don't reach a '$' then we ignore it.
     if(travelledThrough == strlen(arg))return -1;
-    
-
     // Skip the dollar sign, to the nearest digit.
     arg++; 
     // Go through each character in the string, until a line feed of null terminator.
