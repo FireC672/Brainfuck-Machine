@@ -42,9 +42,41 @@ lexical_tree *concretiztaion(lexical_tree *rawTree){
            concretizedTree.push_back(std::make_pair("sub", "$01"));
            concretizedTree.push_back(std::make_pair("pop", "$00"));
            concretizedTree.push_back(std::make_pair("sup", "$01"));
-        }else if (!a.compare("set")) {
+        }else if (!a.compare("ins")) {
            // Abstract instruction #4 (Sentence insertion)
-        }else{
+           // This is a destructive instruction, 
+           // meaning it will overwrite any data that comes after it.
+           int nSize = b.size()-1;
+           for(int i = 0; i < nSize; i++){
+                concretizedTree.push_back(std::make_pair("rsh", "$01"));
+                concretizedTree.push_back(std::make_pair("psh", "$00"));
+                concretizedTree.push_back(std::make_pair("sub", "$01"));
+                concretizedTree.push_back(std::make_pair("pop", "$00"));
+           }
+           std::string nSizeStr = '$' + std::to_string(nSize);
+           concretizedTree.push_back(std::make_pair("lsh",nSizeStr));
+
+	   for(int j = 1; j < nSize; j++){
+	       concretizedTree.push_back(std::make_pair("sup",'$'+std::to_string(b[j])));
+               concretizedTree.push_back(std::make_pair("rsh","$01"));
+	   }
+        }else if (!a.compare("gsr"){
+            // Abstract instruction #5 (Go Superior right) equivalent to ++...+>
+	    concretizedTree.push_back(std::make_pair("sup", b));
+	    concretizedTree.push_back(std::make_pair("rsh", "$01"));
+	}else if (!a.compare("gsl"){
+            // Abstract instruction #6 (Go Superior left) equivalent to ++...+<
+	    concretizedTree.push_back(std::make_pair("sup", b));
+	    concretizedTree.push_back(std::make_pair("lsh", "$01"));
+	}else if (!a.compare("sbr"){
+            // Abstract instruction #7 (Go Sub right) equivalent to --...->
+	    concretizedTree.push_back(std::make_pair("sub", b));
+	    concretizedTree.push_back(std::make_pair("rsh", "$01"));
+	}else if (!a.compare("sbl"){
+            // Abstract instruction #5 (Go Sub left) equivalent to --...-<
+	    concretizedTree.push_back(std::make_pair("sub", b));
+	    concretizedTree.push_back(std::make_pair("lsh", "$01"));
+	}else{
            // If we don't meet a abstract instruction, then our assumption is false.
            // meaning this node is a concret node, and can be planted into the tree without any changes.
            concretizedTree.push_back(std::make_pair(a,b));        
